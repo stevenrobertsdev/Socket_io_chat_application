@@ -1,0 +1,22 @@
+{
+  "name": "socket_io_chat_application",
+  "version": "1.0.0",
+  "description": "A chat room application build with Socket.io, Node and Express.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevenrobertsdev/Socket_io_chat_application.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevenrobertsdev/Socket_io_chat_application/issues"
+  },
+  "homepage": "https://github.com/stevenrobertsdev/Socket_io_chat_application#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

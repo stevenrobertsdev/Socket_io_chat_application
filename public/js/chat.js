@@ -1,32 +1,50 @@
 const socket = io();
 
-// elements
+// Elements
 const   $mesageForm = document.querySelector("#message-form"),
         $messageFormInput = $mesageForm.querySelector("input"),
         $messageFormButton = $mesageForm.querySelector("button"),
-        $sendLocationButton = document.querySelector("#send-location");
+        $sendLocationButton = document.querySelector("#send-location"),
+        $messages = document.querySelector('#messages');
+
+// Templates
+const   messageTemplate = document.querySelector("#message-template").innerHTML;
 
 socket.on('message', (message) => {
-    console.log(`${message}`);
+    const html = Mustache.render(messageTemplate, {
+        message:message
+    });
+    $messages.insertAdjacentHTML('beforeend', html);
 });
 
+socket.on('locationMessage', (url) => {
+    console.log(url);
+});
+
+
+// send message code
 $mesageForm.addEventListener("submit", function(e) {
     e.preventDefault();
 
     $messageFormButton.setAttribute("disabled", "disabled");
 
     const message = $messageFormInput.value;
+
     socket.emit("sendMessage", message, (error) => {
         $messageFormButton.removeAttribute("disabled");
         $messageFormInput.value = " ";
         $messageFormInput.focus();
+
         if(error) {
             return console.log(error);
         }
-        console.log('Message delivered');
+
     });
 });
 
+
+
+// send location code
 $sendLocationButton.addEventListener('click',function() {
     if(!navigator.geolocation) {
         return alert("Geo location is not supported by your browser");

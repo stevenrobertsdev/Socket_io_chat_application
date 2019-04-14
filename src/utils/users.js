@@ -16,7 +16,7 @@ const addUser = ({id, username, room}) => {
 
     if(existingUser) {
         return {
-            error: 'Username is in use'
+            error: 'Sorry, that username is already in use'
         }
     }
 
@@ -50,25 +50,9 @@ const getUsersInRoom = (room) => {
     })
 }
 
-addUser({
-    id:21,
-    username: "Steven",
-    room:"3"
-})
-
-addUser({
-    id:43,
-    username: "Mike",
-    room:"3"
-})
-
-addUser({
-    id:53,
-    username: "James",
-    room:"4"
-})
-
-
-const userlist = getUsersInRoom("4");
-
-console.log(userlist);
+module.exports = {
+    addUser,
+    removeUser,
+    getUser,
+    getUsersInRoom
+}
